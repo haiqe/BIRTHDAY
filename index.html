@@ -3,443 +3,676 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Huzaifa ✨</title>
+    <title>Happy Birthday Huzaifa</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --soft-pink: #F8C8DC;
-            --lavender: #D8B4FE;
-            --cream: #FFF8F0;
-            --rose-gold: #B76E79;
-            --soft-purple: #C3B1E1;
-            --text-dark: #4A4A4A;
-        }
-
+        /* Base Styles & Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: default;
         }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--cream);
-            color: var(--text-dark);
+        
+        body, html {
+            width: 100%;
+            background-color: #030308;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
-            scroll-behavior: smooth;
+            scrollbar-width: none; /* Firefox */
+        }
+        body::-webkit-scrollbar { display: none; } /* Chrome */
+
+        /* Typography */
+        .cinzel { font-family: 'Cinzel', serif; }
+        .vibes { font-family: 'Great Vibes', cursive; }
+        .text-gold { color: #d4af37; }
+        .glow-text { text-shadow: 0 0 10px rgba(212, 175, 55, 0.5), 0 0 20px rgba(212, 175, 55, 0.3); }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
         }
 
-        h1, h2, h3, .serif {
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* Mouse Follow Glow */
-        .mouse-glow {
+        /* Entry Experience */
+        #intro-screen {
             position: fixed;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(216,180,254,0.4) 0%, rgba(255,255,255,0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #000;
             z-index: 9999;
-            transition: width 0.3s, height 0.3s;
-        }
-
-        /* Loader */
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: #1a1a2e;
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 10000;
-            transition: opacity 1s ease;
+            flex-direction: column;
+        }
+        .intro-text {
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            opacity: 0;
+            position: absolute;
+            text-align: center;
+            font-weight: 300;
         }
 
-        .loader-text {
-            font-size: 2rem;
-            color: var(--cream);
-            font-family: 'Playfair Display', serif;
-            text-shadow: 0 0 20px var(--lavender);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; text-shadow: 0 0 10px var(--lavender); }
-            50% { opacity: 1; text-shadow: 0 0 30px var(--soft-pink); }
-        }
-
-        /* Animated Background */
-        .animated-bg {
-            background: linear-gradient(-45deg, var(--soft-pink), var(--lavender), var(--cream), var(--soft-purple));
+        /* Hero Section */
+        #hero-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(45deg, #030308, #110d26, #061922, #030308);
             background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            animation: aurora 15s ease infinite;
         }
-
-        @keyframes gradientBG {
+        @keyframes aurora {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
-        /* Glassmorphism */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0; left: 0;
+            z-index: 1;
         }
-        
-        .glass-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.15);
+        .hero-content {
+            z-index: 2;
+            padding: 20px;
+        }
+        .hero-title {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+            opacity: 0;
         }
 
-        /* Sections */
+        /* Sections General */
         section {
             min-height: 100vh;
+            padding: 100px 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 2rem 10%;
             position: relative;
         }
 
-        /* Hero Section */
-        #hero h1 {
-            font-size: 4rem;
-            color: var(--rose-gold);
-            text-align: center;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 10px rgba(255,255,255,0.5);
-        }
-
-        #hero h3 {
-            font-size: 1.5rem;
-            text-align: center;
-            font-weight: 400;
-            line-height: 1.6;
-        }
-
-        .floating-element {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* About & Messages */
-        .text-content {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            text-align: center;
-        }
-
-        /* Shayari Cards */
-        .shayari-container {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            width: 100%;
+        /* The Huzaifa Section */
+        .story-container {
             max-width: 800px;
-        }
-
-        .quote-card {
-            font-style: italic;
+            text-align: center;
+            line-height: 2.2;
             font-size: 1.3rem;
-            color: var(--rose-gold);
+        }
+        .story-line {
+            opacity: 0;
+            transform: translateY(20px);
+            margin-bottom: 20px;
+        }
+        .story-highlight {
+            font-size: 2rem;
+            margin: 40px 0;
+            color: #d4af37;
         }
 
-        .love-hint {
-            text-shadow: 0 0 15px rgba(216, 180, 254, 0.8);
-            color: #6a4c93;
+        /* Constellation Section */
+        .constellation-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
         }
-
-        /* Gift Section */
-        #gift-box {
-            font-size: 5rem;
+        .star-node {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #fff, 0 0 30px #d4af37;
             cursor: pointer;
             transition: transform 0.3s;
-            animation: shake 3s infinite;
+        }
+        .star-node:hover { transform: scale(1.5); }
+        .star-label {
+            position: absolute;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            padding: 5px 15px;
+            border-radius: 20px;
+            border: 1px solid #d4af37;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+        .star-node:hover .star-label { opacity: 1; }
+
+        /* The Letter */
+        .envelope-wrapper {
+            perspective: 1000px;
+            cursor: pointer;
+            margin-top: 50px;
+        }
+        .envelope {
+            width: 300px;
+            height: 200px;
+            background: #1a1a24;
+            border: 1px solid #333;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+        }
+        .flap {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #252535;
+            clip-path: polygon(0 0, 50% 50%, 100% 0);
+            transform-origin: top;
+            transition: transform 1s;
+            border-top: 1px solid #d4af37;
+            z-index: 4;
+        }
+        .letter-paper {
+            position: absolute;
+            bottom: 0; left: 5%; width: 90%; height: 90%;
+            background: #fdfaf0;
+            color: #111;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: transform 1.5s ease-in-out;
+            z-index: 3;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .envelope-front {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 100%;
+            background: #1e1e2c;
+            clip-path: polygon(0 100%, 50% 50%, 100% 100%, 100% 0, 0 0);
+            z-index: 5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .envelope-wrapper.open .flap { transform: rotateX(180deg); }
+        .envelope-wrapper.open .letter-paper { transform: translateY(-150px) scale(1.2); z-index: 6; }
+        .seal {
+            width: 40px; height: 40px;
+            background: #8b0000;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 6;
+            box-shadow: inset 0 0 10px #4a0000;
+            display: flex; justify-content: center; align-items: center;
+            font-family: 'Great Vibes', cursive; color: gold;
+        }
+        .envelope-wrapper.open .seal { display: none; }
+
+        /* Shayari Sections */
+        .shayari-frame {
+            padding: 50px;
+            max-width: 700px;
+            text-align: center;
+            border: 2px solid transparent;
+            border-image: linear-gradient(to right, transparent, #d4af37, transparent) 1;
+            background: radial-gradient(circle, rgba(212,175,55,0.05) 0%, transparent 70%);
+            font-size: 1.4rem;
+            line-height: 2;
+        }
+        .moonlight {
+            background: radial-gradient(circle at top, rgba(200,220,255,0.1) 0%, transparent 60%);
+            padding: 60px;
+            border-radius: 50%;
         }
 
-        #gift-box:hover {
-            transform: scale(1.1);
+        /* Memory Galaxy (Three.js Container) */
+        #galaxy-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+        }
+        .galaxy-ui {
+            z-index: 1;
+            text-align: center;
+            pointer-events: none;
+        }
+        .galaxy-wish {
+            position: absolute;
+            cursor: pointer;
+            pointer-events: auto;
+            width: 20px; height: 20px;
+            background: radial-gradient(circle, #fff 10%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.5); opacity: 1; box-shadow: 0 0 20px #fff; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+        .wish-text {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.9);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #d4af37;
+            font-size: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+            transition: opacity 0.5s;
         }
 
-        @keyframes shake {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-10deg); }
-            75% { transform: rotate(10deg); }
+        /* Surprise Gift */
+        .gift-box {
+            width: 150px; height: 150px;
+            background: linear-gradient(135deg, #d4af37, #aa7c11);
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+            border-radius: 10px;
+            transition: transform 0.3s;
         }
-
-        .hidden-message {
+        .gift-box:hover { transform: scale(1.05); }
+        .gift-ribbon-v {
+            position: absolute; top: 0; left: 50%; width: 20px; height: 100%;
+            background: #8b0000; transform: translateX(-50%);
+        }
+        .gift-ribbon-h {
+            position: absolute; top: 50%; left: 0; width: 100%; height: 20px;
+            background: #8b0000; transform: translateY(-50%);
+        }
+        .gift-bow {
+            position: absolute; top: -20px; left: 50%; transform: translateX(-50%);
+            width: 60px; height: 30px; background: #8b0000; border-radius: 50px 50px 0 0;
+        }
+        .gift-message {
+            margin-top: 40px;
+            font-size: 2.5rem;
             opacity: 0;
             display: none;
-            margin-top: 2rem;
-            font-size: 1.3rem;
-            color: var(--rose-gold);
-            font-weight: 500;
         }
 
-        /* Floating Wishes */
-        .wishes-grid {
-            display: flex;
-            flex-wrap: wrap;
+        /* Outro */
+        #outro-section {
+            background: #000;
+            height: 100vh;
             justify-content: center;
-            gap: 1.5rem;
-            margin-top: 2rem;
+        }
+        .outro-stars-name {
+            font-size: 5rem;
+            letter-spacing: 15px;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(255,255,255,0);
+            transition: all 3s ease;
+        }
+        .outro-stars-name.reveal {
+            color: #fff;
+            text-shadow: 0 0 20px #d4af37;
+            letter-spacing: 5px;
+        }
+        .outro-quote {
+            margin-top: 40px;
+            font-size: 1.2rem;
+            line-height: 2;
+            opacity: 0;
+            color: #ccc;
         }
 
-        .wish-card {
-            background: rgba(255, 255, 255, 0.4);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 500;
-            font-size: 1.1rem;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.6);
-            animation: float 5s ease-in-out infinite;
-        }
-        
-        .wish-card:nth-child(even) { animation-delay: 1s; }
-        .wish-card:nth-child(3n) { animation-delay: 2s; }
-
-        /* Memory Sky */
-        #memory-sky {
-            background: #0f172a;
-            color: var(--cream);
-            overflow: hidden;
-        }
-
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 0 10px white;
-            animation: twinkle 2s infinite alternate;
-        }
-
-        @keyframes twinkle {
-            0% { opacity: 0.3; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1.2); }
-        }
-
-        .star-message {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(15px);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.3);
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            text-align: center;
-            z-index: 100;
-            display: none;
-            color: var(--cream);
-            box-shadow: 0 0 30px rgba(216,180,254,0.3);
-        }
-
-        /* Finale */
-        #finale {
-            background: #1a1a2e;
-            color: var(--cream);
-        }
-
-        .glowing-text {
-            font-size: 3.5rem;
-            text-align: center;
-            text-shadow: 0 0 20px var(--soft-pink), 0 0 40px var(--lavender);
-            margin-bottom: 2rem;
-        }
-
-        /* Responsive */
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            #hero h1 { font-size: 2.5rem; }
-            .glass-card { padding: 2rem; }
-            .glowing-text { font-size: 2rem; }
+            .hero-title { font-size: 2.5rem; }
+            .story-highlight { font-size: 1.5rem; }
+            .outro-stars-name { font-size: 3rem; }
+            .shayari-frame { font-size: 1.1rem; padding: 30px; }
+            .envelope { width: 250px; }
+            .letter-paper { font-size: 0.75rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="mouse-glow" id="mouse-glow"></div>
+    <audio id="bg-music" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/11/22/audio_febc508520.mp3?filename=cinematic-time-lapse-115672.mp3" type="audio/mpeg">
+    </audio>
 
-    <div id="loader">
-        <div class="loader-text">A Special Surprise For Huzaifa ✨</div>
+    <div id="intro-screen">
+        <div id="intro-text-1" class="intro-text cinzel">Some people arrive quietly...</div>
+        <div id="intro-text-2" class="intro-text cinzel">...and somehow become unforgettable.</div>
     </div>
 
-    <section id="hero" class="animated-bg">
-        <div class="floating-element" style="font-size: 4rem; margin-bottom: 1rem;">🎂</div>
-        <h1 data-aos="zoom-in" data-aos-duration="1500">Happy Birthday Huzaifa</h1>
-        <div class="glass-card" data-aos="fade-up" data-aos-delay="500">
-            <h3 class="serif">"Some people don't become special by trying...<br>they become special simply by being themselves."</h3>
+    <section id="hero-section">
+        <div id="particles-js"></div>
+        <div class="hero-content">
+            <h1 class="hero-title cinzel text-gold glow-text">✨ Happy Birthday Huzaifa ✨</h1>
+            <div class="hero-subtitle">
+                <span class="word">Not</span> <span class="word">everyone</span> <span class="word">leaves</span> <span class="word">a</span> <span class="word">mark</span> <span class="word">on</span> <span class="word">memories...</span><br>
+                <span class="word">some</span> <span class="word">people</span> <span class="word">become</span> <span class="word">a</span> <span class="word">memory.</span>
+            </div>
         </div>
     </section>
 
-    <section id="about" class="animated-bg">
-        <div class="glass-card" data-aos="fade-up">
-            <p class="text-content">
-                "Har insaan ki ek alag pehchaan hoti hai, aur Huzaifa un logon me se hai jo apni simplicity aur apne unique nature ki wajah se yaad reh jaate hain. Selective hona koi attitude nahi hota, kabhi kabhi wo ek quality hoti hai jo batati hai ki insaan har kisi ko importance nahi deta. Tumhara calm nature, tumhari individuality, aur cheezon ko apne tareeke se dekhne ka andaaz tumhe alag banata hai."
-            </p>
-        </div>
-    </section>
-
-    <section id="message" class="animated-bg">
-        <div class="glass-card" style="min-height: 250px; width: 100%; max-width: 800px;" data-aos="zoom-in">
-            <span id="typewriter-text" class="text-content serif" style="font-size: 1.4rem;"></span>
-        </div>
-    </section>
-
-    <section id="shayari" class="animated-bg">
-        <div class="shayari-container">
-            <div class="glass-card quote-card" data-aos="fade-right">
-                "Bulandiyon ka safar hauslon se likha jaata hai,<br>
-                Kismat ka zikr to bas kamzor kiya karte hain.<br>
-                Jo khud par yaqeen rakhte hain,<br>
-                Waqt unke liye naye raaste bana diya karta hai."
+    <section id="story-section">
+        <div class="story-container glass p-5">
+            <p class="story-line">Har kisi ki ek vibe hoti hai.</p>
+            <p class="story-line">Kuch log sirf baat karte hain.</p>
+            <p class="story-line">Kuch log sirf milte hain.</p>
+            <p class="story-line">Aur kuch log...</p>
+            <p class="story-line text-gold vibes" style="font-size:2.5rem;">pata hi nahi chalta kab yaadon ka hissa ban jaate hain.</p>
+            <p class="story-line mt-4">Huzaifa unhi logon me se ek hai.</p>
+            
+            <div class="story-highlight cinzel">
+                <span class="story-word">Selective.</span> 
+                <span class="story-word">Independent.</span> 
+                <span class="story-word">Different.</span>
             </div>
             
-            <div class="glass-card quote-card love-hint" data-aos="fade-left">
-                "Na naam ki zarurat hai,<br>
-                Na kisi pehchaan ki.<br>
-                Kuch log bas dil me utar jaate hain,<br>
-                Aur wajah bhi nahi batate."
+            <p class="story-line">Aur shayad isi liye yaad reh jaati hai.</p>
+        </div>
+    </section>
+
+    <section id="constellation-section">
+        <h2 class="cinzel text-gold mb-5">The Stars That Make You</h2>
+        <p style="margin-bottom: 50px; opacity: 0.7;">(Click the stars)</p>
+        <div class="constellation-wrapper">
+            <svg width="100%" height="100%" style="position:absolute; top:0; left:0; z-index:0;">
+                <line x1="10%" y1="20%" x2="40%" y2="50%" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+                <line x1="40%" y1="50%" x2="80%" y2="30%" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+                <line x1="40%" y1="50%" x2="30%" y2="80%" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+                <line x1="30%" y1="80%" x2="70%" y2="90%" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+                <line x1="70%" y1="90%" x2="80%" y2="30%" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+            </svg>
+            
+            <div class="star-node" style="top: 20%; left: 10%;"><div class="star-label cinzel">Confidence</div></div>
+            <div class="star-node" style="top: 50%; left: 40%;"><div class="star-label cinzel">Kindness</div></div>
+            <div class="star-node" style="top: 30%; left: 80%;"><div class="star-label cinzel">Simplicity</div></div>
+            <div class="star-node" style="top: 80%; left: 30%;"><div class="star-label cinzel">Intelligence</div></div>
+            <div class="star-node" style="top: 90%; left: 70%;"><div class="star-label cinzel">Individuality</div></div>
+            <div class="star-node" style="top: 15%; left: 60%;"><div class="star-label cinzel">Strength</div></div>
+        </div>
+    </section>
+
+    <section id="letter-section">
+        <h2 class="cinzel text-gold mb-4">A Note For You</h2>
+        <div class="envelope-wrapper" onclick="openLetter(this)">
+            <div class="envelope">
+                <div class="flap"></div>
+                <div class="seal">H</div>
+                <div class="letter-paper">
+                    <p><strong>Huzaifa,</strong></p><br>
+                    <p>Aaj tumhara birthday hai.</p>
+                    <p>Aur birthdays sirf age badhne ka naam nahi hote.</p>
+                    <p>Ye yaad dilate hain ki duniya me ek aur saal tumhari muskurahat, tumhari energy aur tumhari presence rahi.</p><br>
+                    <p><em>May life always give you reasons to smile.</em></p><br>
+                    <p>Aur jab kabhi life difficult lage...</p>
+                    <p>to yaad rakhna:</p>
+                    <p><strong>Tum usse zyada strong ho jitna tum khud samajhti ho.</strong></p>
+                </div>
+                <div class="envelope-front"></div>
+            </div>
+        </div>
+        <p style="margin-top: 30px; font-size: 0.8rem; opacity: 0.5;">(Tap to open)</p>
+    </section>
+
+    <section id="shayari-motivation">
+        <div class="shayari-frame glass">
+            <p>"Thak kar rukna magar haar mat maanna,<br>
+            Andheron se ghabra kar raah mat badalna.</p>
+            <br>
+            <p>Jo sitare aaj door nazar aate hain,<br>
+            Kal wahi tumhari manzil likhenge."</p>
+        </div>
+    </section>
+
+    <section id="shayari-love">
+        <div class="moonlight">
+            <div class="shayari-frame" style="border:none; background:none; text-shadow: 0 0 10px rgba(255,255,255,0.5);">
+                <p>"Kuch log lafzon se nahi,<br>
+                Apni maujoodgi se asar kar jaate hain.</p>
+                <br>
+                <p>Aur kuch ehsaas...<br>
+                Izhaar ke bina bhi dil me ghar kar jaate hain."</p>
             </div>
         </div>
     </section>
 
-    <section id="gift" class="animated-bg">
-        <h2 class="serif" style="font-size: 2rem; margin-bottom: 2rem; color: var(--text-dark);" data-aos="fade-down">A Little Something For You...</h2>
-        <div id="gift-box" onclick="openGift()" data-aos="zoom-in">🎁</div>
-        <div id="hidden-gift-msg" class="glass-card hidden-message text-content">
-            "Thank you for being yourself. The world already has enough copies; your uniqueness is your real beauty. ✨"
+    <section id="memory-galaxy-section" style="padding:0; overflow:hidden;">
+        <div id="galaxy-container"></div>
+        <div class="galaxy-ui">
+            <h2 class="cinzel text-gold" style="margin-top: 100px;">The Galaxy of Wishes</h2>
+            <p>(Find the floating stars)</p>
+        </div>
+        
+        <div class="galaxy-wish" style="top: 30%; left: 20%;" onclick="showWish('May your dreams find you.')"></div>
+        <div class="galaxy-wish" style="top: 60%; left: 75%;" onclick="showWish('May your smile stay forever.')"></div>
+        <div class="galaxy-wish" style="top: 75%; left: 35%;" onclick="showWish('May life be kind to you.')"></div>
+        <div class="galaxy-wish" style="top: 20%; left: 80%;" onclick="showWish('May happiness never lose your address.')"></div>
+
+        <div id="wish-display" class="wish-text cinzel text-gold"></div>
+    </section>
+
+    <section id="gift-section">
+        <div class="gift-box" onclick="openGift()">
+            <div class="gift-ribbon-v"></div>
+            <div class="gift-ribbon-h"></div>
+            <div class="gift-bow"></div>
+        </div>
+        <div id="gift-msg" class="gift-message cinzel text-gold glow-text text-center">
+            You are appreciated more than you know.
         </div>
     </section>
 
-    <section id="wishes" class="animated-bg">
-        <h2 class="serif" style="font-size: 2.5rem; margin-bottom: 2rem;" data-aos="fade-up">Wishing You...</h2>
-        <div class="wishes-grid">
-            <div class="wish-card" data-aos="fade-up" data-aos-delay="100">🎈 Happiness</div>
-            <div class="wish-card" data-aos="fade-up" data-aos-delay="200">🎯 Success</div>
-            <div class="wish-card" data-aos="fade-up" data-aos-delay="300">💖 Good Health</div>
-            <div class="wish-card" data-aos="fade-up" data-aos-delay="400">🌸 Peace</div>
-            <div class="wish-card" data-aos="fade-up" data-aos-delay="500">✨ Confidence</div>
-            <div class="wish-card" data-aos="fade-up" data-aos-delay="600">🌍 Beautiful Memories</div>
-            <div class="wish-card" data-aos="fade-up" data-aos-delay="700">🎂 Endless Smiles</div>
+    <section id="outro-section">
+        <div id="final-name" class="outro-stars-name cinzel">HUZAIFA</div>
+        <div class="outro-quote text-center">
+            <p id="oq1">"Some people are remembered.</p>
+            <p id="oq2">Some people are missed.</p>
+            <p id="oq3" class="text-gold mt-3 mb-4">And some people simply become unforgettable."</p>
+            <p id="oq4" class="vibes glow-text" style="font-size: 3rem;">✨ Happy Birthday Huzaifa ✨</p>
         </div>
     </section>
 
-    <section id="memory-sky">
-        <h2 class="serif" style="font-size: 2rem; z-index: 10; margin-top: -30vh; text-align:center;">Tap the stars to reveal a wish...</h2>
-        <div id="star-display" class="star-message"></div>
-    </section>
-
-    <section id="finale">
-        <h1 class="glowing-text" data-aos="zoom-in" data-aos-duration="2000">
-            "May this year bring you everything that makes your heart smile."
-        </h1>
-        <h2 class="serif" style="font-size: 2.5rem; color: var(--soft-pink); margin-bottom: 2rem;" data-aos="fade-up" data-aos-delay="500">
-            Happy Birthday, Huzaifa ✨
-        </h2>
-        <p class="serif" style="font-size: 1.2rem; font-style: italic; opacity: 0.8;" data-aos="fade-up" data-aos-delay="1000">
-            "Stay blessed, stay happy, and never stop being the wonderful person you are. 🎂✨"
-        </p>
-    </section>
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-    
+
     <script>
-        // Initialize AOS Animations
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
-        });
+        gsap.registerPlugin(ScrollTrigger);
 
-        // Loader and initial Confetti
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loader').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('loader').style.display = 'none';
-                    fireConfetti();
-                }, 1000);
-            }, 2500);
-        });
+        // --- 1. ENTRY EXPERIENCE ---
+        window.onload = () => {
+            const tl = gsap.timeline();
+            
+            // Play music on first interaction if blocked by autoplay policies
+            document.body.addEventListener('click', () => {
+                const audio = document.getElementById('bg-music');
+                if (audio.paused) audio.play();
+            }, { once: true });
 
-        // Mouse Follow Glow
-        document.addEventListener('mousemove', (e) => {
-            const glow = document.getElementById('mouse-glow');
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+            tl.to("#intro-text-1", {opacity: 1, duration: 2, ease: "power2.inOut"})
+              .to("#intro-text-1", {opacity: 0, duration: 1.5, delay: 2, ease: "power2.inOut"})
+              .to("#intro-text-2", {opacity: 1, duration: 2, ease: "power2.inOut"})
+              .to("#intro-text-2", {
+                  opacity: 0, 
+                  scale: 2, 
+                  filter: "blur(20px)", 
+                  duration: 2, 
+                  delay: 2, 
+                  ease: "power2.in"
+              })
+              .to("#intro-screen", {opacity: 0, duration: 1.5, onComplete: () => {
+                  document.getElementById("intro-screen").style.display = "none";
+                  initHero();
+              }});
+        };
 
-        // Typewriter Effect
-        let typeWritterTriggered = false;
-        window.addEventListener('scroll', () => {
-            const msgSection = document.getElementById('message');
-            const position = msgSection.getBoundingClientRect();
-            
-            if(position.top < window.innerHeight && !typeWritterTriggered) {
-                typeWritterTriggered = true;
-                new Typed('#typewriter-text', {
-                    strings: ['Huzaifa,<br><br>Aaj ka din sirf tumhara hai. Umeed karta hoon ki tumhari zindagi me hamesha khushiyan, sukoon, success aur wo sab kuch ho jo tum deserve karti ho. Tum un logon me se ho jinke saath chhoti si baat bhi yaad reh jaati hai.<br><br>Stay happy.<br>Stay confident.<br>Stay exactly the way you are.<br><br>Because that\'s what makes you special. ✨'],
-                    typeSpeed: 40,
-                    showCursor: true,
-                    cursorChar: '|'
-                });
-            }
-        });
+        // --- 2. HERO EXPERIENCE (Particles & Text) ---
+        function initHero() {
+            // Particles.js Config
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": { "value": 150, "density": { "enable": true, "value_area": 800 } },
+                    "color": { "value": ["#ffffff", "#d4af37", "#88ccff"] },
+                    "shape": { "type": "circle" },
+                    "opacity": { "value": 0.8, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false } },
+                    "size": { "value": 3, "random": true, "anim": { "enable": true, "speed": 2, "size_min": 0.1, "sync": false } },
+                    "line_linked": { "enable": false },
+                    "move": { "enable": true, "speed": 0.5, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": { "onhover": { "enable": true, "mode": "bubble" }, "onclick": { "enable": true, "mode": "repulse" }, "resize": true },
+                    "modes": { "bubble": { "distance": 200, "size": 6, "duration": 2, "opacity": 1, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 } }
+                },
+                "retina_detect": true
+            });
 
-        // Gift Box Interaction
-        let giftOpened = false;
-        function openGift() {
-            if(giftOpened) return;
-            giftOpened = true;
+            // Hero Text Animation
+            gsap.to(".hero-title", {opacity: 1, y: 0, duration: 2, ease: "power3.out"});
             
-            const box = document.getElementById('gift-box');
-            box.style.animation = 'none';
-            box.innerHTML = '✨🎁✨';
-            box.style.transform = 'scale(1.2)';
-            
-            fireConfetti();
-            
-            const msg = document.getElementById('hidden-gift-msg');
-            msg.style.display = 'block';
-            setTimeout(() => {
-                msg.style.opacity = '1';
-                msg.style.transition = 'opacity 1s ease';
-            }, 100);
+            const words = document.querySelectorAll(".hero-subtitle .word");
+            gsap.fromTo(words, 
+                {opacity: 0, y: 10}, 
+                {opacity: 1, y: 0, duration: 0.8, stagger: 0.1, delay: 1, ease: "power2.out"}
+            );
+            gsap.to(".hero-subtitle", {opacity: 1, duration: 0.1}); // reveal container
         }
 
-        // Confetti Function
-        function fireConfetti() {
-            var duration = 3000;
-            var end = Date.now() + duration;
+        // --- 3. SCROLL ANIMATIONS (Story & Shayari) ---
+        const storyLines = document.querySelectorAll('.story-line');
+        storyLines.forEach((line) => {
+            gsap.to(line, {
+                scrollTrigger: {
+                    trigger: line,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                ease: "power2.out"
+            });
+        });
+
+        gsap.from(".story-word", {
+            scrollTrigger: {
+                trigger: ".story-highlight",
+                start: "top 80%"
+            },
+            opacity: 0,
+            scale: 0.5,
+            duration: 1,
+            stagger: 0.3,
+            ease: "back.out(1.7)"
+        });
+
+        gsap.from("#shayari-motivation .shayari-frame", {
+            scrollTrigger: { trigger: "#shayari-motivation", start: "top 70%" },
+            y: 50, opacity: 0, duration: 1.5, ease: "power3.out"
+        });
+
+        gsap.from("#shayari-love .moonlight", {
+            scrollTrigger: { trigger: "#shayari-love", start: "top 70%" },
+            scale: 0.8, opacity: 0, duration: 2, ease: "power2.out"
+        });
+
+        // --- 4. THE LETTER ---
+        function openLetter(el) {
+            el.classList.add('open');
+        }
+
+        // --- 5. THREE.JS MEMORY GALAXY ---
+        const container = document.getElementById('galaxy-container');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        container.appendChild(renderer.domElement);
+
+        const starGeometry = new THREE.BufferGeometry();
+        const starCount = 3000;
+        const starVertices = [];
+
+        for(let i=0; i<starCount; i++) {
+            const x = (Math.random() - 0.5) * 2000;
+            const y = (Math.random() - 0.5) * 2000;
+            const z = -Math.random() * 2000;
+            starVertices.push(x, y, z);
+        }
+
+        starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+        const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 2, transparent: true, opacity: 0.8 });
+        const stars = new THREE.Points(starGeometry, starMaterial);
+        scene.add(stars);
+
+        camera.position.z = 100;
+
+        function animateGalaxy() {
+            requestAnimationFrame(animateGalaxy);
+            stars.rotation.y += 0.0005;
+            stars.rotation.x += 0.0002;
+            renderer.render(scene, camera);
+        }
+        animateGalaxy();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Galaxy Wishes Interaction
+        function showWish(text) {
+            const display = document.getElementById('wish-display');
+            display.innerText = text;
+            display.style.opacity = 1;
+            setTimeout(() => { display.style.opacity = 0; }, 3000);
+        }
+
+        // --- 6. SURPRISE GIFT (Confetti) ---
+        function openGift() {
+            const box = document.querySelector('.gift-box');
+            box.style.display = 'none';
+            
+            const msg = document.getElementById('gift-msg');
+            msg.style.display = 'block';
+            gsap.to(msg, {opacity: 1, duration: 2, scale: 1.1, ease: "elastic.out(1, 0.3)"});
+
+            // Fireworks/Confetti Effect
+            const duration = 3000;
+            const end = Date.now() + duration;
 
             (function frame() {
                 confetti({
@@ -447,14 +680,14 @@
                     angle: 60,
                     spread: 55,
                     origin: { x: 0 },
-                    colors: ['#F8C8DC', '#D8B4FE', '#FFF8F0']
+                    colors: ['#d4af37', '#ffffff', '#8b0000']
                 });
                 confetti({
                     particleCount: 5,
                     angle: 120,
                     spread: 55,
                     origin: { x: 1 },
-                    colors: ['#F8C8DC', '#D8B4FE', '#FFF8F0']
+                    colors: ['#d4af37', '#ffffff', '#8b0000']
                 });
 
                 if (Date.now() < end) {
@@ -463,48 +696,23 @@
             }());
         }
 
-        // Memory Sky Stars Generation
-        const sky = document.getElementById('memory-sky');
-        const starMessages = [
-            "May your smile never fade.",
-            "May every year be better than the last.",
-            "You deserve beautiful things.",
-            "Keep shining, Huzaifa.",
-            "Your uniqueness is your superpower.",
-            "Wishing you endless peace."
-        ];
-        const display = document.getElementById('star-display');
+        // --- 7. FINAL CINEMATIC ENDING ---
+        ScrollTrigger.create({
+            trigger: "#outro-section",
+            start: "top 50%",
+            onEnter: () => {
+                // Form the name from stars
+                document.getElementById('final-name').classList.add('reveal');
+                
+                // Fade in final quotes
+                const tl = gsap.timeline({delay: 1.5});
+                tl.to("#oq1", {opacity: 1, duration: 1.5})
+                  .to("#oq2", {opacity: 1, duration: 1.5})
+                  .to("#oq3", {opacity: 1, duration: 2})
+                  .to("#oq4", {opacity: 1, duration: 3, scale: 1.1, ease: "power2.out"});
+            }
+        });
 
-        for (let i = 0; i < 40; i++) {
-            let star = document.createElement('div');
-            star.className = 'star';
-            
-            // Random positioning and size
-            let size = Math.random() * 4 + 2;
-            star.style.width = size + 'px';
-            star.style.height = size + 'px';
-            star.style.top = Math.random() * 80 + 10 + '%';
-            star.style.left = Math.random() * 90 + 5 + '%';
-            star.style.animationDelay = Math.random() * 2 + 's';
-            
-            star.onclick = (e) => {
-                // Remove animation to show it was clicked
-                e.target.style.background = '#F8C8DC';
-                e.target.style.boxShadow = '0 0 15px #F8C8DC';
-                
-                // Show Message
-                let randomMsg = starMessages[Math.floor(Math.random() * starMessages.length)];
-                display.innerHTML = randomMsg;
-                display.style.display = 'block';
-                
-                // Fade out message after 3 seconds
-                setTimeout(() => {
-                    display.style.display = 'none';
-                }, 3000);
-            };
-            
-            sky.appendChild(star);
-        }
     </script>
 </body>
 </html>
